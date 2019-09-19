@@ -1,6 +1,7 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.5.1
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.3.1
 
 RUN bin/elasticsearch-plugin install analysis-stempel
 RUN bin/elasticsearch-plugin install analysis-icu
-RUN bin/elasticsearch-plugin install pl.allegro.tech.elasticsearch.plugin:elasticsearch-analysis-morfologik:6.5.1
+# there is no relased morfologik plugin for es 7.3.1
+# RUN bin/elasticsearch-plugin install pl.allegro.tech.elasticsearch.plugin:elasticsearch-analysis-morfologik:7.3.1
 RUN bin/elasticsearch-plugin install --batch ingest-attachment

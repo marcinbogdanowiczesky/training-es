@@ -5,15 +5,12 @@ services:
     build:
       dockerfile: elasticsearch-with-plugins
       context: .
-    image: training-es:7.3.1
-    container_name: es01
+    image: training-es:6.5.1
+    container_name: elasticsearch
     environment:
-      - node.name=es01
-      - discovery.seed_hosts=es02
-      - cluster.initial_master_nodes=es01,es02
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1512m -Xmx1512m"
     ulimits:
       memlock:
         soft: -1
@@ -25,15 +22,13 @@ services:
     networks:
       - esnet
   elasticsearch2:
-    image: training-es:7.3.1
-    container_name: es02
+    image: training-es:6.5.1
+    container_name: elasticsearch2
     environment:
-      - node.name=es02
-      - discovery.seed_hosts=es01
-      - cluster.initial_master_nodes=es01,es02
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1512m -Xmx1512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
     ulimits:
       memlock:
         soft: -1
@@ -43,7 +38,7 @@ services:
     networks:
       - esnet
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.3.1
+    image: docker.elastic.co/kibana/kibana:6.5.1
     container_name: kibana
     networks:
       - esnet

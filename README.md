@@ -3,13 +3,13 @@
 Dockerized two-nodes Elasticsearch cluster with Kibana and the following plugins installed:
 - analysis-icu
 - analysis-stempel
-- ~~pl.allegro.tech.elasticsearch.plugin:elasticsearch-analysis-morfologik~~ (not available yet)
+- pl.allegro.tech.elasticsearch.plugin:elasticsearch-analysis-morfologik
 - ingest-attachment
 
 ## Usage
 1. Build custom Elasticsearch image (with listed plugins installed):
    ```
-   docker build -f elasticsearch-with-plugins -t training-es:7.3.1 .
+   docker build -f elasticsearch-with-plugins -t training-es:7.7.0 .
    ```
 2. Start cluster using this command:
    ```

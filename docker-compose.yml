@@ -5,12 +5,12 @@ services:
     build:
       dockerfile: elasticsearch-with-plugins
       context: .
-    image: training-es:7.3.1
+    image: training-es:7.7.0
     container_name: es01
     environment:
       - node.name=es01
       - discovery.seed_hosts=es02
-      - cluster.initial_master_nodes=es01,es02
+      - cluster.initial_master_nodes=es01
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -25,12 +25,12 @@ services:
     networks:
       - esnet
   elasticsearch2:
-    image: training-es:7.3.1
+    image: training-es:7.7.0
     container_name: es02
     environment:
       - node.name=es02
       - discovery.seed_hosts=es01
-      - cluster.initial_master_nodes=es01,es02
+      - cluster.initial_master_nodes=es01
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -43,7 +43,7 @@ services:
     networks:
       - esnet
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.3.1
+    image: docker.elastic.co/kibana/kibana:7.7.0
     container_name: kibana
     networks:
       - esnet

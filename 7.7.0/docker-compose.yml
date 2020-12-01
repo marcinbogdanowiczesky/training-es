@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: elasticsearch-with-plugins
       context: .
-    image: training-es:7.9.3
+    image: training-es:7.7.0
     container_name: es01
     environment:
       - node.name=es01
@@ -25,7 +25,7 @@ services:
     networks:
       - esnet
   elasticsearch2:
-    image: training-es:7.9.3
+    image: training-es:7.7.0
     container_name: es02
     environment:
       - node.name=es02
@@ -43,7 +43,7 @@ services:
     networks:
       - esnet
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.3
+    image: docker.elastic.co/kibana/kibana:7.7.0
     container_name: kibana
     networks:
       - esnet

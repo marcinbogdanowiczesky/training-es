@@ -14,12 +14,14 @@ services:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - path.repo=/usr/share/elasticsearch/backup
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - esdata1:/usr/share/elasticsearch/data
+      - backup:/usr/share/elasticsearch/backup
     ports:
       - 9200:9200
     networks:
@@ -34,12 +36,14 @@ services:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - path.repo=/usr/share/elasticsearch/backup
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
+      - backup:/usr/share/elasticsearch/backup
     networks:
       - esnet
   kibana:
@@ -53,6 +57,8 @@ volumes:
   esdata1:
     driver: local
   esdata2:
+    driver: local
+  backup:
     driver: local
 
 networks:

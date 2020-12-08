@@ -4,3 +4,6 @@ RUN bin/elasticsearch-plugin install analysis-stempel
 RUN bin/elasticsearch-plugin install analysis-icu
 RUN bin/elasticsearch-plugin install pl.allegro.tech.elasticsearch.plugin:elasticsearch-analysis-morfologik:7.9.3
 RUN bin/elasticsearch-plugin install --batch ingest-attachment
+
+RUN mkdir /usr/share/elasticsearch/backup
+RUN chown -R elasticsearch:root /usr/share/elasticsearch/backup
